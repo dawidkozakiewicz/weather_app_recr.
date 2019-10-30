@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './app.css'
 import Forecasts from './Forecasts';
 
 class App extends Component {
@@ -10,8 +9,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    // e.preventDefault();
     console.log('żądanie wysłane');
     this.setState({
       forecasts: []
@@ -89,15 +86,23 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>METEO-SERVICE</h1>
-        <h2>Weather For Nine Polish Biggest Cities!</h2>
-        <span>
-          Results on page:
-        <button onClick={this.handleTrimToOne}>1</button>
-          <button onClick={this.handleTrimToFour}>4</button>
-          <button onClick={this.handleTrimToNine}>9</button>
-        </span>
-        <Forecasts todos={this.state.newForecasts} />
+
+        <div className="jumbotron container">
+          <h1>Meteo Service</h1>
+          <h4>Forecast for nine biggest polish cities!</h4>
+        </div>
+
+        <div className="container">
+          <span>
+            Results on page:
+        <button className="ml-1 btn btn-info" onClick={this.handleTrimToOne}>1</button>
+            <button className="ml-1 btn btn-info" onClick={this.handleTrimToFour}>4</button>
+            <button className="ml-1 btn btn-info" onClick={this.handleTrimToNine}>9</button>
+          </span>
+        </div>
+        <div className="container mt-2">
+          <Forecasts forecasts={this.state.newForecasts} />
+        </div>
       </div>
     );
   }
