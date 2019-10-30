@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import Todos from './Todos';
-
+import './app.css'
+import Forecasts from './Forecasts';
 
 class App extends Component {
 
   state = {
-    todos: []
+    forecasts: [],
+    newForecasts: []
   }
 
-  handleCitySubmit = (e) => {
+  componentDidMount() {
 
-    e.preventDefault();
+    // e.preventDefault();
     console.log('żądanie wysłane');
     this.setState({
-      todos: []
+      forecasts: []
     })
     const cities = ['Warszawa', 'Kraków', 'Łódź', 'Wrocław', 'Poznań', 'Gdańsk', 'Szczecin', 'Bydgoszcz', 'Lublin']
     cities.forEach((city, index) => {
@@ -39,9 +40,10 @@ class App extends Component {
             pressure: data.main.pressure,
             wind: data.wind.speed
           }
-          let todos = [...this.state.todos, weather]
+          let forecasts = [...this.state.forecasts, weather]
           this.setState({
-            todos: todos
+            forecasts,
+            newForecasts: forecasts
           })
 
           console.log(this.state)
@@ -49,31 +51,57 @@ class App extends Component {
         .catch(err => {
           console.log(err)
           this.setState({
-            todos: []
+            forecasts: []
           })
         })
     })
+  }
 
 
+  handleTrimToOne = (e) => {
+    e.preventDefault()
+    let forecasts = [...this.state.forecasts]
+    let newForecasts = forecasts.slice(0, 1)
+    this.setState({
+      newForecasts
+    })
+  }
 
+  handleTrimToFour = (e) => {
+    e.preventDefault()
+    let forecasts = [...this.state.forecasts]
+    let newForecasts = forecasts.slice(0, 4)
+    this.setState({
+      newForecasts
+    })
+  }
+
+  handleTrimToNine = (e) => {
+    e.preventDefault()
+    let forecasts = [...this.state.forecasts]
+    let newForecasts = forecasts.slice(0, 9)
+    this.setState({
+      newForecasts
+    })
   }
 
 
   render() {
     return (
-      <div className="todo-app container">
-        <h1 className="center blue-text">METEO-SERVICE</h1>
-        <button className="waves-effect waves-light btn" onClick={this.handleCitySubmit}>Weather
-        </button>
-        <p>Results on page:</p>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <Todos todos={this.state.todos} />
-
+      <div>
+        <h1>METEO-SERVICE</h1>
+        <h2>Weather For Nine Polish Biggest Cities!</h2>
+        <span>
+          Results on page:
+        <button onClick={this.handleTrimToOne}>1</button>
+          <button onClick={this.handleTrimToFour}>4</button>
+          <button onClick={this.handleTrimToNine}>9</button>
+        </span>
+        <Forecasts todos={this.state.newForecasts} />
       </div>
     );
   }
 }
+
 
 export default App;

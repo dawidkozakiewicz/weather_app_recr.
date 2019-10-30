@@ -1,10 +1,12 @@
 import React from 'react';
+import './todos.css'
 
-const Todos = ({ todos }) => {
+const Forecasts = ({ todos }) => {
+    console.log('a kukku!')
 
-    const todoList = todos.length ? (todos.map((todo) => {
+    const forecastList = todos.length ? (todos.map((todo) => {
         return (
-            <div className="collection-item" key={todo.id}>
+            <div key={todo.id}>
                 <h5>Forecast for: {todo.city}</h5>
                 <p>Actual time: {todo.date}</p>
                 <p>Temperature: {todo.temp} {'\u00b0'}C</p>
@@ -14,14 +16,14 @@ const Todos = ({ todos }) => {
         )
     })
     ) : (
-            <p className="center" >Push the button and see the forecast! :-)</p>
+            <p>Push the button and see the forecast! :-)</p>
         )
 
     return (
-        <div className="todos collection">
-            {todoList}
+        <div>
+            {forecastList}
         </div>
     )
 }
 
-export default Todos;
+export default Forecasts;
