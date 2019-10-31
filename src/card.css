@@ -1,0 +1,12 @@
+.card {
+    /* width: 320px; */
+    border-radius: 5px;
+    background-color: #2C2A36;
+    margin: 5px;
+    padding: 10px;
+}
+
+header img {
+    height: 100%;
+    width: auto;
+}

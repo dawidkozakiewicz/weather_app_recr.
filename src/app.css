@@ -1,0 +1,38 @@
+header {
+    background-color: #2C2A36;
+    height: 232px;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+.container:nth-child(1), .container:nth-child(2) {
+    margin-bottom: 10px;
+}
+
+.container:nth-child(1) .row {
+    background-color: #2C2A36;
+    border-radius: 5px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-span {
+    background-color: #2C2A36;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.container-span button {
+    width: 50px;
+    border-style: none;
+    background-color: #3d3b47;
+    margin-left: 10px;
+    outline-color: #c5c5c4;
+}

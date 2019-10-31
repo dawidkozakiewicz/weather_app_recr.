@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Forecasts from './Forecasts';
+import Forecasts from './weather';
+import './app.css'
+import picture from './images/winter-icons.gif'
 
 class App extends Component {
 
@@ -42,8 +44,6 @@ class App extends Component {
             forecasts,
             newForecasts: forecasts
           })
-
-          console.log(this.state)
         })
         .catch(err => {
           console.log(err)
@@ -86,22 +86,31 @@ class App extends Component {
   render() {
     return (
       <div>
-
-        <div className="jumbotron container">
-          <h1>Meteo Service</h1>
-          <h4>Forecast for nine biggest polish cities!</h4>
-        </div>
-
         <div className="container">
+          <div className="row">
+            <div className="col-lg-8 col-md-8">
+              <header className="center">
+                <div><h1 >Meteo Service</h1>
+                  <h4>Actual weather for nine biggest polish cities!</h4>
+                </div>
+
+              </header>
+            </div>
+            <div className="col-lg-4 col-md-4">
+              <img src={picture} alt="picture" />
+            </div>
+          </div>
+        </div>
+        <div className="container container-span">
           <span>
             Results on page:
-        <button className="ml-1 btn btn-info" onClick={this.handleTrimToOne}>1</button>
-            <button className="ml-1 btn btn-info" onClick={this.handleTrimToFour}>4</button>
-            <button className="ml-1 btn btn-info" onClick={this.handleTrimToNine}>9</button>
+        <button className="" onClick={this.handleTrimToOne}>1</button>
+            <button className="" onClick={this.handleTrimToFour}>4</button>
+            <button className="" onClick={this.handleTrimToNine}>9</button>
           </span>
         </div>
-        <div className="container mt-2">
-          <Forecasts forecasts={this.state.newForecasts} />
+        <div className="container">
+          <Forecasts weathers={this.state.newForecasts} />
         </div>
       </div>
     );
