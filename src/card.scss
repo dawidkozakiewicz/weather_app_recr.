@@ -1,0 +1,22 @@
+.card {
+    border-radius: 5px;
+    background-color: #2C2A36;
+    margin: 5px;
+    padding: 10px;
+    transition: transform 2.5s;
+
+    &:hover {
+        -ms-transform: scale(1.5); /* IE 9 */
+        -webkit-transform: scale(1.5); /* Safari 3-8 */
+        transform: scale(1.5);
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .card {
+        &:hover {
+            transform: none;
+        }
+    }
+}

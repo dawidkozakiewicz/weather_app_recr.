@@ -1,0 +1,78 @@
+$backgColor: #2C2A36;
+$btnColor: #3d3b47;
+$h3Color: #828ECE;
+
+header {
+    background-color: $backgColor;
+    height: 232px;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+.container:nth-child(1), .container:nth-child(2) {
+    margin-bottom: 10px;
+}
+
+.container:nth-child(1) .row {
+    background-color: $backgColor;
+    border-radius: 5px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media only screen and (max-width: 480px) {
+        margin-left: 15px;
+    }
+}
+
+.container-span {
+    background-color: $backgColor;
+    padding: 10px;
+    border-radius: 5px;
+
+    button {
+        width: 50px;
+        border-style: none;
+        background-color: $btnColor;
+        margin-left: 10px;
+        outline-color: #c5c5c4;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.container:nth-child(3) .row {
+    margin-left: -5px;
+    margin-right: -5px;
+
+    span {
+        h3 {
+            color: $backgColor;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+h3 {
+    color: $h3Color;
+}
+
+h1 {
+    font-size: 58px;
+}
+
+h4 {
+    font-size: 19px;
+}

@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import Forecasts from './weather';
-import './app.css'
-import picture from './images/winter-icons.gif'
+import Weather from './weather';
+import './app.scss';
+import './index.scss';
+import picture from './images/winter-icons.gif';
 
 class App extends Component {
 
   state = {
-    forecasts: [],
-    newForecasts: []
+    weathers: [],
+    renderedWeathers: []
   }
 
   componentDidMount() {
     console.log('żądanie wysłane');
     this.setState({
-      forecasts: []
+      weathers: []
     })
     const cities = ['Warszawa', 'Kraków', 'Łódź', 'Wrocław', 'Poznań', 'Gdańsk', 'Szczecin', 'Bydgoszcz', 'Lublin']
     cities.forEach((city, index) => {
@@ -39,16 +40,19 @@ class App extends Component {
             pressure: data.main.pressure,
             wind: data.wind.speed
           }
-          let forecasts = [...this.state.forecasts, weather]
+          let weathers = [...this.state.weathers, weather]
+          weathers = weathers.sort(function (a, b) {
+            return a.city.localeCompare(b.city);
+          })
           this.setState({
-            forecasts,
-            newForecasts: forecasts
+            weathers,
+            renderedWeathers: weathers
           })
         })
         .catch(err => {
           console.log(err)
           this.setState({
-            forecasts: []
+            weathers: []
           })
         })
     })
@@ -57,28 +61,28 @@ class App extends Component {
 
   handleTrimToOne = (e) => {
     e.preventDefault()
-    let forecasts = [...this.state.forecasts]
-    let newForecasts = forecasts.slice(0, 1)
+    let weathers = [...this.state.weathers]
+    let renderedWeathers = weathers.slice(0, 1)
     this.setState({
-      newForecasts
+      renderedWeathers
     })
   }
 
   handleTrimToFour = (e) => {
     e.preventDefault()
-    let forecasts = [...this.state.forecasts]
-    let newForecasts = forecasts.slice(0, 4)
+    let weathers = [...this.state.weathers]
+    let renderedWeathers = weathers.slice(0, 4)
     this.setState({
-      newForecasts
+      renderedWeathers
     })
   }
 
   handleTrimToNine = (e) => {
     e.preventDefault()
-    let forecasts = [...this.state.forecasts]
-    let newForecasts = forecasts.slice(0, 9)
+    let weathers = [...this.state.weathers]
+    let renderedWeathers = weathers.slice(0, 9)
     this.setState({
-      newForecasts
+      renderedWeathers
     })
   }
 
@@ -104,13 +108,13 @@ class App extends Component {
         <div className="container container-span">
           <span>
             Results on page:
-        <button className="" onClick={this.handleTrimToOne}>1</button>
-            <button className="" onClick={this.handleTrimToFour}>4</button>
-            <button className="" onClick={this.handleTrimToNine}>9</button>
+        <button onClick={this.handleTrimToOne}>1</button>
+            <button onClick={this.handleTrimToFour}>4</button>
+            <button onClick={this.handleTrimToNine}>9</button>
           </span>
         </div>
         <div className="container">
-          <Forecasts weathers={this.state.newForecasts} />
+          <Weather weathers={this.state.renderedWeathers} />
         </div>
       </div>
     );

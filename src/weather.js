@@ -1,5 +1,5 @@
 import React from 'react';
-import './card.css'
+import './card.scss'
 const Weathers = ({ weathers }) => {
     const weatherList = weathers.length ? (weathers.map((weather) => {
         return (
@@ -13,7 +13,8 @@ const Weathers = ({ weathers }) => {
         )
     })
     ) : (
-            <p>Push the button and see the weather! :-)</p>
+            <span><h3>We are sorry, the service is temporarily unavailable :-(</h3></span>
+
         )
 
     return (
